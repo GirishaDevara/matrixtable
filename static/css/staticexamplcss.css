@@ -1,0 +1,18 @@
+.layout{
+            width:40%;
+		    margin:10vh auto 0 auto;
+		    background-color:#a8e0b66e;
+		    color: #6f062a;
+		    font-family: cursive;
+        }
+        input[type = text]{
+            margin-left: -10%;
+            margin-bottom: 1%;
+        }
+        lable{
+           float: left;
+           margin-right : 10%;
+           width: 150px;
+           display: block;
+  		   overflow: hidden;
+        }
