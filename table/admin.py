@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import Item
+from . models import Item, employee
 
 # Register your models here.
 class TableAdmin(admin.ModelAdmin):
