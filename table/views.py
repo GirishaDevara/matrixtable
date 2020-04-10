@@ -1,77 +1,46 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect, get_object_or_404
+from table.models import Item, employee
 from django.http import HttpResponse
-import pdb
+# import pdb
 
-
-def table(request,val1,val2):
-    l = []
-    c = 1
-    for r in range(val1):
-        l1 = []
-        for col in range(val2):
-            l1.append(c)
-            c += 1
-        l.append(l1)
-    return render(request,'mtable.html',{'l':l})
-
-# def showform(request):
-#     # pdb.set_trace()
-#     if request.method == 'POST':
-#         # pdb.set_trace()
-#         # data = dict(request.POST)
-#         data = {}
-#         # print(data,data.get('name'))
-#         data['name'] = request.POST.get('name')
-#         return render(request,"sampleoutput.html",data)
-#     else:
-#         return render(request,"sample.html",{})
-
-def showform(request):
-    return render(request,'sample.html')
-
-def showdata(request):
-    data = {}
-    data['fname'] = request.POST.get('fname')
-    data['lname'] = request.POST.get('lname')
-    data['email'] = request.POST.get('email')
-    data['phone']  = request.POST.get('phone')
-    data['imgurl'] = request.POST.get('imgurl')
-    return render(request,"sampleoutput.html",data)
-
-def  staticform(request):
-    if request.method == "POST":
-        data = {}
-        data['fname'] = request.POST.get('fname')
-        data['lname'] = request.POST.get('lname')
-        data['email'] = request.POST.get('email')
-        data['phone'] = request.POST.get('phone')
-        data['imgurl'] = request.POST.get('imgurl')
-        return render(request, "staticformOP.html", data)
-    else:
-        return render(request, 'staticformIP.html')
-
-def grade(request):
-    if request.method == "POST":
-        mark = int(request.POST.get('marks'))
-        return render(request, "gradescale.html", {'marks': mark})
-    else:
-        return render(request, "gradeinputdata.html")
-
-def inher(request):
-    if request.method == "POST":
-        return render(request,'inheroutput.html',{'name':request.POST.get('name')})
-    else:
-        return render(request,'inher.html')
-
-def home(request):
-    return render(request,'home.html')
+def index(request):
+    all_items = Item.objects.all()
+    return render(request,'index.html',{'all_items':all_items})
 
 def contacts(request):
     return render(request,'contacts.html')
+def about(request):
+    return render(request,'about.html')
 
-def homeinheritance(request):
-    return render(request,'homeinher.html')
+def edititem(request,id):
+    item = Item.objects.get(id=id)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        cost = request.POST.get('cost')
+        imgurl = request.POST.get('imgurl')
+        description = request.POST.get('description')
+        item.name  = name
+        item.cost = cost
+        item.image_url = imgurl
+        item.description = description
+        item.save()
+        return redirect('/item')
+    else:
+        return render(request,'edititem.html',{'item':item})
 
-def contactform(request):
-    return render(request,'contactsinher.html')
+def create(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        cost = request.POST.get('cost')
+        imgurl = request.POST.get('imgurl')
+        description =request.POST.get('description')
+        item = Item(name = name, cost = cost, image_url =  imgurl, description = description)
+        item.save()
+        return redirect('/item')
+    else:
+        return render(request,'createitem.html')
+
+def delete(request,id):
+    obj = get_object_or_404(Item, id=id)
+    obj.delete()
+    return redirect('/item')

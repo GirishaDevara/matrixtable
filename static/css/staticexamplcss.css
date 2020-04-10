@@ -5,11 +5,11 @@
 		    color: #6f062a;
 		    font-family: cursive;
         }
-        input[type = text]{
-            margin-left: -10%;
-            margin-bottom: 1%;
+input[type = text]{
+        margin-left: -10%;
+        margin-bottom: 1%;
         }
-        lable{
+lable{
            float: left;
            margin-right : 10%;
            width: 150px;

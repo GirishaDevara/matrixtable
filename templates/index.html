@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Home page</h2>
+<table style="width:40%; bor">
+    <tr>
+        <th>Id</th>
+        <th>name</th>
+        <th>cost</th>
+        <th>image_url</th>
+        <th>description</th>
+    </tr>
+    {% for item in all_items %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.cost}}</td>
+        <td>{{item.image_url}}</td>
+        <td>{{item.description}}</td>
+    </tr>
+    {%endfor%}
+    <tr><input type="submit" value="edit"></tr>
+</table>
+{% endblock %}

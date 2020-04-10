@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <div class="container layout form-group">
+        <h1 style="text-align : center;">Form</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="control-group">
+                <lable class="control-label" >name :</lable>
+                <input type="text" name="name" placeholder="name of the item">
+            </div>
+            <div class="control-group">
+                <lable class="control-label">cost :</lable>
+                <input type="number" name="cost" placeholder="cost of the item">
+            </div>
+            <div class="control-group">
+                <lable class="control-label">image url :</lable>
+                <input type="url" name="imgurl" placeholder="url">
+            </div>
+            <div class="control-group">
+                <lable class="control-label" for="description">discription :</lable>
+                <input type="text" name="description" placeholder="Enter descrition">
+            </div>
+
+            <input type="submit" value="submit" style="margin-left: 200px;">
+        </form>
+</div>
+</div>
+{% endblock%}
