@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from table.models import Item, employee
+from django.contrib import messages
+
 from django.http import HttpResponse
 # import pdb
 
@@ -31,6 +33,7 @@ def edititem(request,id):
         item.image_url = imgurl
         item.description = description
         item.save()
+        messages.error(request,"updated successfully ")
         return redirect('/item')
     else:
         return render(request,'edititem.html',{'item':item})

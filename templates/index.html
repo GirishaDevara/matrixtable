@@ -1,31 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <h2>Home page</h2>
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-    <table class="table table-bordered">
-    <tr style="background-color:gray">
-        <th>Id</th>
-        <th>name</th>
-        <th>cost</th>
-        <th>image_url</th>
-        <th>description</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    {% for item in all_items %}
-    <tr>
-        <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.cost}}</td>
-        <td>{{item.image_url}}</td>
-        <td>{{item.description}}</td>
-        <td><input type="submit" value="Edit" name="edit"></td>
-        <td><input type="submit" value="Delete" name="delete"></td>
-    </tr>
-    {%endfor%}
-</table>
-    {% endblock %}
-    </form>
+
+<h1>Product Card</h1>
+{% for item in all_items %}
+<div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="card">
+      <div class="card-body text-center">
+        <p><img class="card-img-top img-fluid" src="{{item.image_url}}" alt="img not found"></p>
+        <h1>{{item.name}}</h1>
+        <p class="price">{{item.cost}}</p>
+        <p>{{item.description}}</p>
+        <p><button>view Details</button></p>
+      </div>
+    </div>
 </div>
+{% endfor %}
+{% endblock %}
