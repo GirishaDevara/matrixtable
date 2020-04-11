@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Home page</h2>
-<table style="width:40%; bor">
-    <tr>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+    <table class="table table-bordered">
+    <tr style="background-color:gray">
         <th>Id</th>
         <th>name</th>
         <th>cost</th>
         <th>image_url</th>
         <th>description</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     {% for item in all_items %}
     <tr>
@@ -16,8 +21,11 @@
         <td>{{item.cost}}</td>
         <td>{{item.image_url}}</td>
         <td>{{item.description}}</td>
+        <td><input type="submit" value="Edit" name="edit"></td>
+        <td><input type="submit" value="Delete" name="delete"></td>
     </tr>
     {%endfor%}
-    <tr><input type="submit" value="edit"></tr>
 </table>
-{% endblock %}
+    {% endblock %}
+    </form>
+</div>

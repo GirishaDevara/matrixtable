@@ -5,7 +5,7 @@
 		    color: #6f062a;
 		    font-family: cursive;
         }
-input[type = text]{
+input{
         margin-left: -10%;
         margin-bottom: 1%;
         }
@@ -15,4 +15,10 @@ lable{
            width: 150px;
            display: block;
   		   overflow: hidden;
+        }
+input[type = submit]{
+            align-items: center;
+        }
+h1{
+        text-align : center;
         }

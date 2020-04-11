@@ -4,8 +4,15 @@ from django.http import HttpResponse
 # import pdb
 
 def index(request):
-    all_items = Item.objects.all()
-    return render(request,'index.html',{'all_items':all_items})
+    if request.method == 'POST':
+        if request.POST.get("edit"):
+            id = request.POST.get('name')
+            print(id)
+            return redirect('/item/')
+
+    else:
+        all_items = Item.objects.all()
+        return render(request,'index.html',{'all_items':all_items})
 
 def contacts(request):
     return render(request,'contacts.html')
