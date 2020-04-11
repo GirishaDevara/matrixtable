@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from table.models import Item, employee
+from table.models import Item
 from django.contrib import messages
 
 from django.http import HttpResponse
@@ -54,3 +54,7 @@ def delete(request,id):
     obj = get_object_or_404(Item, id=id)
     obj.delete()
     return redirect('/item')
+
+def itemdetails(request,id):
+    item = Item.objects.get(id= id)
+    return render(request,'itemdetails.html',{'item':item})
